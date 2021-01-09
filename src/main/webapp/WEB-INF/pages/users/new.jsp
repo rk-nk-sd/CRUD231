@@ -16,35 +16,23 @@
 
 <h1>Создать нового пользователя</h1>
 <hr/>
-<c:if test="${param.submitted}">
 
-    <c:if test="${empty param.name}" var="noName" />
-    <c:if test="${empty param.surname}" var="noSurname" />
-    <c:if test="${empty param.email}" var="noEmail" />
-    <c:if test="${not (noName or noSurname or noEmail)}">
-        <c:set value="${param.name}" var="name" scope="request"/>
-        <c:set value="${param.surname}" var="surname" scope="request"/>
-        <c:set value="${param.email}" var="email" scope="request"/>
-        <jsp:forward page="notFaund.jsp" />
-    </c:if>
-
-</c:if>
 <form method="post" action="/users">
 <%--    <input type="hidden" name="submitted" value="true" />--%>
     Enter your name:
     <input type="text" name="name"
-           value="<c:out value='${param.name}'/>" />
+           value="<c:out value='${user.name}'/>" />
 
 
-        <c:if test="${noName}">
+        <c:if test="${empty user.name}">
 
     Note: you must enter a name
 
     </c:if>
     </p>
     Enter your Surname:
-    <input type="text" name="name"
-           value="<c:out value='${param.surname}'/>" />
+    <input type="text" name="surname"
+           value="<c:out value='${user.surname}'/>" />
 
 
     <c:if test="${noName}">
@@ -55,7 +43,7 @@
     </p>
     Enter your email address:
     <input type="text" name="email"
-           value="<c:out value='${param.email}'/>" />
+           value="<c:out value='${user.email}'/>" />
 
 
     <c:if test="${noEmail}">
