@@ -1,6 +1,5 @@
 package web.controller;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import web.model.User;
 import web.service.UserService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -47,15 +47,15 @@ public class UsersController {
     }
 
     @GetMapping("/new")
-    public String addNewUser(Model model) {
+    public String addNewUser(@ModelAttribute("user") User user) {
         //Вернет html форму для создания нового пользователя
-        model.addAttribute("user", new User());
         return "users/new";
     }
 
     @PostMapping()
-    public String create (@ModelAttribute("user") User user){
-        //Создаем нового пользователя
+    public String create (@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
+        if(bindingResult.hasErrors())
+            return "users/new";
         userService.createNewUser(user);
         return "redirect:/users";
     }
@@ -66,8 +66,10 @@ public class UsersController {
         return "users/edit";
     }
     @PostMapping("/{id}")
-    public String update (@ModelAttribute("user") User user,@PathVariable("id") int id){
+    public String update (@ModelAttribute("user") @Valid User user, BindingResult bindingResult, @PathVariable("id") int id){
         //Обновляет пользователя
+        if(bindingResult.hasErrors())
+            return "users/edit";
         userService.update(user, id);
         return "redirect:/users";
     }

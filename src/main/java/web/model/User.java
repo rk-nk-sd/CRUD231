@@ -1,11 +1,19 @@
 package web.model;
 
-import jakarta.validation.constraints.NotEmpty;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class User {
     private int id;
+    @NotEmpty(message = "Поле не должно быть пустым!")
+    @Size(min = 2, max = 25, message = "от 2 до 25 символов")
     private String name;
+    @NotEmpty(message = "Поле не должно быть пустым!")
     private String surname;
+    @NotEmpty(message = "Поле не должно быть пустым!")
+    @Email(message = "Не корректно указан адрес эл.почты")
     private String email;
 
     public User() {

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<html lang="ru"  xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <!DOCTYPE html>
 <head>
     <title>Title</title>
@@ -16,6 +16,22 @@
 
 <h1>Создать нового пользователя</h1>
 <hr/>
+<%--<form th:method="POST" actions="/users" th:object="${user}">--%>
+
+<%--    <label for="name">Имя:</label>--%>
+<%--    <input type="text" th:field="*{name}" id="name" />--%>
+<%--    <p th:if="${#fields.hasErrors('name')}"/>--%>
+<%--    --%>
+<%--    <label for="surname">Фамилия:</label>--%>
+<%--    <input type="text" th:field="*{surname}" id="surname">--%>
+<%--    <p  th:if="${#fields.hasErrors('surname')}"/>--%>
+<%--    --%>
+<%--    <label for="email">E-mail:</label>--%>
+<%--    <input type="text" th:field="*{email}" id="email">--%>
+<%--    <p  th:if="${#fields.hasErrors('email')}"/>--%>
+<%--    --%>
+<%--    <input type="submit" value="Создать пользователя">--%>
+<%--</form>--%>
 
 <form method="post" action="/users">
 <%--    <input type="hidden" name="submitted" value="true" />--%>
@@ -53,7 +69,7 @@
     </c:if>
     </p>
 
-    <input type="submit" value="Sign up" />
+    <input type="submit" value="Создать пользователя" />
 </form>
 </body>
 </html>
