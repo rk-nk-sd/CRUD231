@@ -24,15 +24,6 @@ public class UsersController {
     }
 
     @GetMapping()
-//    public ModelAndView getAllUsers() {
-//        List<User> listUser = userService.getAllUsers();
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("users/showAll");
-//        modelAndView.addObject("users", listUser);
-////        modelAndView.addObject("hello", "hello from controller!");
-//        System.out.println(userService.getAllUsers());
-//        return modelAndView;
-//    }
     public String getAllUsers(Model model) {
         //Получим список пользователей и передадим в представление
         System.out.println(userService.getAllUsers());

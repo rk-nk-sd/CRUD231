@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    private static final String table = "user_crud";
+    private static final String table = "users_crud";
 
     /**
      * Конфигурация для подключения к БД
      */
     private static final String url = "jdbc:mysql://127.0.0.1/test";
     private static final String user = "jm";
-    private static final String pass = "1111";
+    private static final String pass = "Pa$$word";
 
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 

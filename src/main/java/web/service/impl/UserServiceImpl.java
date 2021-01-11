@@ -1,4 +1,4 @@
-package web.service;
+package web.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,12 +7,13 @@ import web.dao.UserDaoHibernateImpl;
 import web.dao.UserDaoImp;
 import web.dao.UserDaoJDBCImpl;
 import web.model.User;
+import web.service.UserService;
 
 import java.util.List;
 
-@Service
+//@Service
 public class UserServiceImpl implements UserService {
-    private UserDaoJDBCImpl userDao = new UserDaoJDBCImpl();
+    private UserDaoHibernateImpl userDao = new UserDaoHibernateImpl();
 
     @Transactional
     @Override

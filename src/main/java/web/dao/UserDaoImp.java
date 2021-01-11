@@ -8,15 +8,23 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Repository
+//@Repository
 public class UserDaoImp implements UserDao {
 
-   @Autowired
-   private SessionFactory sessionFactory;
+
+   @Override
+   public List<User> getAllUsers() {
+      return null;
+   }
+
+   @Override
+   public User getCurrentUser(int id) {
+      return null;
+   }
 
    @Override
    public void createNewUser(User user) {
-      sessionFactory.getCurrentSession().save(user);
+
    }
 
    @Override
@@ -28,17 +36,4 @@ public class UserDaoImp implements UserDao {
    public void delete(int id) {
 
    }
-
-   @Override
-   @SuppressWarnings("unchecked")
-   public List<User> getAllUsers() {
-      TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
-      return query.getResultList();
-   }
-
-   @Override
-   public User getCurrentUser(int id) {
-      return null;
-   }
-
 }

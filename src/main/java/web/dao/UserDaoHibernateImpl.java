@@ -7,17 +7,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-//@Repository
+@Repository
 public class UserDaoHibernateImpl implements UserDao {
     private EntityManager entityManager;
 
     @PersistenceContext(unitName = "emf")
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
+        System.out.println("Содержимое entityManager: " + this.entityManager);
     }
 
     public List<User> getAllUsers() {
-//        return entityManager.createNativeQuery("SELECT * from users").getResultList();
+        System.out.println("Выполняется метод getAllUsers() :"+ entityManager.createNativeQuery("SELECT * from users_crud").getResultList());
+        //return entityManager.createNativeQuery("SELECT * from users_crud").getResultList();
         return entityManager.createQuery("from " + User.class.getName()).getResultList(); //session.createQuery("from User").list();
     }
 
