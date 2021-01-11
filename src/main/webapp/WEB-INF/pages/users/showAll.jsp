@@ -32,8 +32,8 @@
         <td><a href="users/${user.id}">${user.surname}</a></td>
         <td><a href="users/${user.id}">${user.email}</a></td>
         <td>
-            <a href="users/${user.id}/edit">EDIT</a>
-            <a href="users/${user.id}/delete">DELETE</a>
+            <a href="users/${user.id}">Сведения</a>
+            <a href="users/${user.id}/edit">Редактировать</a>
         </td>
     </tr>
 </c:forEach>

@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Repository
+//@Repository
 public class UserDaoHibernateImpl implements UserDao {
     private EntityManager entityManager;
 
@@ -17,6 +17,7 @@ public class UserDaoHibernateImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
+//        return entityManager.createNativeQuery("SELECT * from users").getResultList();
         return entityManager.createQuery("from " + User.class.getName()).getResultList(); //session.createQuery("from User").list();
     }
 
@@ -32,6 +33,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     public void updateUser(int id, User user) {
 //        entityManager.merge(user);
+        entityManager.merge(entityManager.find(User.class, id));
     }
 
     public User getCurrentUser(int id) {

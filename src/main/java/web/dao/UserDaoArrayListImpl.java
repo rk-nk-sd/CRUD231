@@ -7,7 +7,7 @@ import web.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+//@Repository
 public class UserDaoArrayListImpl {
     private static int ID_COUNT;
     private List<User> userList;

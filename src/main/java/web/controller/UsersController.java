@@ -35,6 +35,7 @@ public class UsersController {
 //    }
     public String getAllUsers(Model model) {
         //Получим список пользователей и передадим в представление
+        System.out.println(userService.getAllUsers());
         model.addAttribute("users", userService.getAllUsers());
         return "users/showAll";
     }
@@ -65,7 +66,7 @@ public class UsersController {
         model.addAttribute("user", userService.getCurrentUser(id));
         return "users/edit";
     }
-    @PostMapping("/{id}")
+    @PatchMapping("/{id}")
     public String update (@ModelAttribute("user") @Valid User user, BindingResult bindingResult, @PathVariable("id") int id){
         //Обновляет пользователя
         if(bindingResult.hasErrors())

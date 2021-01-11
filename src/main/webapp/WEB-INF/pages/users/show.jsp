@@ -8,11 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<html>
+<p>
 <head>
     <title>Title</title>
 </head>
-<body>
+<p>
 <h1>Текущий пользователь</h1>
 <table>
     <tr>
@@ -34,8 +34,9 @@
 </table>
 <hr/>
 <a href="/users">Главная</a>
+</p>
 <a href="${user.id}/edit">Редактировать</a>
-<%--<a href="${user.id}">Удалить</a>--%>
+</p>
 <form method="POST" actions="/users/${user.id}">
     <input type="hidden" name="_method" value="delete"/>
     <input type="submit" value="Delete"/>

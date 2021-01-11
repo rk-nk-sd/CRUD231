@@ -1,5 +1,6 @@
 package web.config;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,50 +14,51 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.Properties;
 
-@Configuration
-@ComponentScan(basePackages = "web")
-@EnableTransactionManagement
-@PropertySource(value = "classpath:db.properties")
+//@Configuration
+//@ComponentScan(basePackages = "web")
+//@EnableTransactionManagement
+//@PropertySource(value = "classpath:db.properties")
 public class HibernateConfig {
     private Environment environment;
 
-    @Autowired
+//    @Autowired
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
 
-    @Bean
+//    @Bean
     public Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
+//        properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
         return properties;
     }
 
-    @Bean
-    public DataSource dataSource() {
+//    @Bean
+    public DataSource dataSource() throws SQLException {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
-        dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-        dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
-        dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+        dataSource.setDriverClassName(environment.getRequiredProperty("db.driver"));
+        dataSource.setUrl(environment.getRequiredProperty("db.url"));
+        dataSource.setUsername(environment.getRequiredProperty("db.username"));
+        dataSource.setPassword(environment.getRequiredProperty("db.password"));
         return dataSource;
     }
 
-    @Bean
-    public JpaTransactionManager jpaTransactionManager() {
+//    @Bean
+    public JpaTransactionManager jpaTransactionManager() throws SQLException {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
         jpaTransactionManager.setEntityManagerFactory(entityManagerFactory(dataSource(), hibernateProperties()));
         return jpaTransactionManager;
     }
 
-    @Bean
+//    @Bean
     public EntityManagerFactory entityManagerFactory(DataSource dataSource, Properties hibernateProperties) {
         final LocalContainerEntityManagerFactoryBean lcefb = new LocalContainerEntityManagerFactoryBean();
         lcefb.setDataSource(dataSource);
-        lcefb.setPackagesToScan("com.javamaster");
+        lcefb.setPackagesToScan("web");
         lcefb.setJpaProperties(hibernateProperties());
         lcefb.setPersistenceUnitName("emf");
         lcefb.setPersistenceProviderClass(HibernatePersistenceProvider.class);

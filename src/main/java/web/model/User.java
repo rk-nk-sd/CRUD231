@@ -1,16 +1,22 @@
 package web.model;
 
-
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @Column(name = "car_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotEmpty(message = "Поле не должно быть пустым!")
     @Size(min = 2, max = 25, message = "от 2 до 25 символов")
     private String name;
     @NotEmpty(message = "Поле не должно быть пустым!")
+    @Column(name = "last_name")
     private String surname;
     @NotEmpty(message = "Поле не должно быть пустым!")
     @Email(message = "Не корректно указан адрес эл.почты")

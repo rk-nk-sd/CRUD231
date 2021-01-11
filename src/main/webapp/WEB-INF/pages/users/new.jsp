@@ -47,7 +47,6 @@
 </c:if>
 
 <form method="post" action="/users">
-<%--    <input type="hidden" name="submitted" value="true" />--%>
     Enter your name:
     <input type="text" name="name" value="${user.name}" />
 

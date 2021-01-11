@@ -5,9 +5,9 @@
   Time: 2:12
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html xmlns:th="http://thymeleaf.org" xmlns:pages="http://www.thymeleaf.org/pagesdialect">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Title</title>
 </head>
@@ -26,7 +26,7 @@
 <%--</form>--%>
 
 <form method="post" action="/users/<c:out value='${user.id}'/>">
-    <%--    <input type="hidden" name="submitted" value="true" />--%>
+    <input type="hidden" name="_method" value="patch"/>
     ID: <c:out value="${user.id}" />
     </p>
     Enter your name:
