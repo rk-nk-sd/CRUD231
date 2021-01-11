@@ -27,10 +27,10 @@
 <c:forEach var="user" items="${users}">
     <tr>
 
-        <td>${user.id}</td>
-        <td>${user.name}</td>
-        <td>${user.surname}</td>
-        <td>${user.email}</td>
+        <td><a href="users/${user.id}">${user.id}</a></td>
+        <td><a href="users/${user.id}">${user.name}</a></td>
+        <td><a href="users/${user.id}">${user.surname}</a></td>
+        <td><a href="users/${user.id}">${user.email}</a></td>
         <td>
             <a href="users/${user.id}/edit">EDIT</a>
             <a href="users/${user.id}/delete">DELETE</a>

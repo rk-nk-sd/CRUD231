@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
 <head>
     <title>Title</title>
@@ -33,33 +34,42 @@
 <%--    <input type="submit" value="Создать пользователя">--%>
 <%--</form>--%>
 
+<c:if test="${empty param.name}" var="noName" />
+<c:if test="${empty param.surname}" var="noSurname" />
+<c:if test="${empty param.email}" var="noEmail" />
+
+<c:if
+    test="${not (noName or noSurname or noEmail)}">
+    <c:set value="${param.name}" var="name" scope="request"/>
+    <c:set value="${param.surname}" var="surname" scope="request"/>
+    <c:set value="${param.email}" var="email" scope="request"/>
+    <jsp:forward page="users" />
+</c:if>
+
 <form method="post" action="/users">
 <%--    <input type="hidden" name="submitted" value="true" />--%>
     Enter your name:
-    <input type="text" name="name"
-           value="<c:out value='${user.name}'/>" />
+    <input type="text" name="name" value="${user.name}" />
 
 
-        <c:if test="${empty user.name}">
+        <c:if test="${noName}">
 
     Note: you must enter a name
 
     </c:if>
     </p>
     Enter your Surname:
-    <input type="text" name="surname"
-           value="<c:out value='${user.surname}'/>" />
+    <input type="text" name="surname" value="${user.surname}" />
 
 
-    <c:if test="${noName}">
+    <c:if test="${noSurname}">
 
         Note: you must enter a name
 
     </c:if>
     </p>
     Enter your email address:
-    <input type="text" name="email"
-           value="<c:out value='${user.email}'/>" />
+    <input type="text" name="email" value="${user.email}" />
 
 
     <c:if test="${noEmail}">

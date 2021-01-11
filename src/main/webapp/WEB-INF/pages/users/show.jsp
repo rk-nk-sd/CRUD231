@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Title</title>
@@ -30,5 +32,13 @@
         <td>${user.getEmail()}</td>
     </tr>
 </table>
+<hr/>
+<a href="/users">Главная</a>
+<a href="${user.id}/edit">Редактировать</a>
+<%--<a href="${user.id}">Удалить</a>--%>
+<form method="POST" actions="/users/${user.id}">
+    <input type="hidden" name="_method" value="delete"/>
+    <input type="submit" value="Delete"/>
+</form>
 </body>
 </html>
