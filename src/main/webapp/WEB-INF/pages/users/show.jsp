@@ -11,6 +11,7 @@
 <p>
 <head>
     <title>Title</title>
+    <link href="../../css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <p>
 <h1>Текущий пользователь</h1>
@@ -33,9 +34,9 @@
     </tr>
 </table>
 <hr/>
-<a href="/users">Главная</a>
-</p>
-<a href="${user.id}/edit">Редактировать</a>
+<a href="/users" class="c">Главная</a>
+
+<a href="${user.id}/edit" class="c">Редактировать</a>
 </p>
 <form method="POST" actions="/users/${user.id}">
     <input type="hidden" name="_method" value="delete"/>

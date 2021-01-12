@@ -1,16 +1,19 @@
 package web.config;
 
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -18,10 +21,13 @@ import java.util.Properties;
 @ComponentScan(basePackages = "web")
 @EnableTransactionManagement
 @PropertySource(value = "classpath:db.properties")
+@EnableJpaRepositories("web.repository")
 public class HibernateConfig {
-    private Environment environment;
 
     @Autowired
+    @Resource
+    private Environment environment;
+
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
@@ -41,8 +47,8 @@ public class HibernateConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
-//        entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistence.class);
-        entityManagerFactoryBean.setPackagesToScan(environment.getRequiredProperty("web"));
+        entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+        entityManagerFactoryBean.setPackagesToScan(environment.getRequiredProperty("PROP_ENTITYMANAGER_PACKAGES_TO_SCAN"));
 
         entityManagerFactoryBean.setJpaProperties(getHibernateProperties());
 
@@ -50,13 +56,12 @@ public class HibernateConfig {
     }
 
     @Bean
-    public JpaTransactionManager jpaTransactionManager() {
+    public JpaTransactionManager transactionManager() {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
         jpaTransactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return jpaTransactionManager;
     }
 
-    @Bean
     public Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));

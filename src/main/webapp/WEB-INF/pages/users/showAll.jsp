@@ -11,11 +11,12 @@
 <html lang="ru">
 <head>
     <title>Title</title>
+    <link href="../../css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <h1>Список пользователей</h1>
 <hr/>
-<a href="/users/new">Создать нового пользователя</a>
+<a href="/users/new" class="c">Создать нового пользователя</a>
 <table>
     <tr>
         <th>Id</th>
@@ -32,8 +33,8 @@
         <td><a href="users/${user.id}">${user.surname}</a></td>
         <td><a href="users/${user.id}">${user.email}</a></td>
         <td>
-            <a href="users/${user.id}">Сведения</a>
-            <a href="users/${user.id}/edit">Редактировать</a>
+            <a href="users/${user.id}" class="c">Сведения</a>
+            <a href="users/${user.id}/edit" class="c">Редактировать</a>
         </td>
     </tr>
 </c:forEach>

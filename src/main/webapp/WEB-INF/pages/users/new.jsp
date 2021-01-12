@@ -13,6 +13,7 @@
 <!DOCTYPE html>
 <head>
     <title>Title</title>
+    <link href="../../css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <h1>Создать нового пользователя</h1>

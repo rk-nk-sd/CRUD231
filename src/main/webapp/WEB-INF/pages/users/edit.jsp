@@ -10,6 +10,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Title</title>
+    <link href="../../css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <h1>Обновить текущего пользователя</h1>

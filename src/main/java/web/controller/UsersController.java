@@ -1,17 +1,14 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import web.model.User;
 import web.service.UserService;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/users")
@@ -48,11 +45,11 @@ public class UsersController {
     public String create (@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return "users/new";
-        userService.createNewUser(user);
+        userService.addNewUser(user);
         return "redirect:/users";
     }
     @GetMapping("/{id}/edit")
-    public String edit (Model model,@PathVariable("id") int id){
+    public String editUser (Model model,@PathVariable("id") int id){
         //Вернет html форму для редактирования страницы пользователя
         model.addAttribute("user", userService.getCurrentUser(id));
         return "users/edit";
@@ -62,7 +59,7 @@ public class UsersController {
         //Обновляет пользователя
         if(bindingResult.hasErrors())
             return "users/edit";
-        userService.update(user, id);
+        userService.update(user);
         return "redirect:/users";
     }
     @DeleteMapping("/{id}")
