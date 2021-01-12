@@ -24,10 +24,10 @@ import java.util.Properties;
 @EnableJpaRepositories("web.repository")
 public class HibernateConfig {
 
-    @Autowired
-    @Resource
     private Environment environment;
 
+    @Autowired
+    @Resource
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
