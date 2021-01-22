@@ -21,7 +21,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = "web")
 @EnableTransactionManagement
 @PropertySource(value = "classpath:db.properties")
-@EnableJpaRepositories("web.repository")
+@EnableJpaRepositories("web.dao")
 public class HibernateConfig {
 
     private Environment environment;
