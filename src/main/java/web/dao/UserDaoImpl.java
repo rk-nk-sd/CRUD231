@@ -10,8 +10,6 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    private User user;
-
     @Autowired
     private EntityManager entityManager;
 
