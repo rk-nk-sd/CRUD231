@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../../../css/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1>Обновить текущего пользователя</h1>
+
+<form th:method="PATCH" th:action="@{/users/{id}(id = ${user.id})}" th:object="${user}">
+<!--    <input type="hidden" name="_method" value="patch"/>-->
+
+    <label for="name">Имя:</label>
+    <input type="text" th:field="*{name}" id="name" />
+    <p th:if="${#fields.hasErrors('name')}"></p>
+
+    <label for="surname">Фамилия:</label>
+    <input type="text" th:field="*{surname}" id="surname">
+    <p  th:if="${#fields.hasErrors('surname')}"></p>
+
+    <label for="email">E-mail:</label>
+    <input type="text" th:field="*{email}" id="email">
+    <p  th:if="${#fields.hasErrors('email')}"></p>
+
+<!--    ID: <c:out value="${user.id}" />-->
+<!--    </p>-->
+
+<!--    Enter your name:-->
+<!--    <input type="text" name="name" value="${user.name}" />-->
+<!--    <c:if test="${empty user.name}">Note: you must enter a name</c:if>-->
+<!--    </p>-->
+
+<!--    Enter your Surname:-->
+<!--    <input type="text" name="surname" value="${user.surname}" />-->
+<!--    <c:if test="${noName}">Note: you must enter a name</c:if>-->
+<!--    </p>-->
+
+<!--    Enter your email address:-->
+<!--    <input type="text" name="email" value="${user.email}" />-->
+<!--    <c:if test="${noEmail}">Note: you must enter an email address</c:if>-->
+<!--    </p>-->
+
+    <input type="submit" value="Сохранить" />
+</form>
+</body>
+</html>
